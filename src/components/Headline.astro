@@ -1,0 +1,35 @@
+---
+const {FontSize, Color, Align, Width, Content, ButtonTitle, DisplayImage} = Astro.props; // Import parameters from Component Call
+---
+
+<style define:vars={{FontSize, Color, Align, Width}}>
+.h1{
+    color: var(--Color);
+    font-size: var(--FontSize);
+    text-align: var(--Align);
+    width: var(--Width);
+}
+</style>
+
+<!-- Print H1 with the provided content -->
+<h1>{Content}</h1>
+
+<!-- If ButtonTitle is set, add button and script tag-->
+{ButtonTitle && (
+<button onclick="ButtonClicked()">{ButtonTitle}</button><br><br>
+<script define:vars={{Content}}>
+function ButtonClicked(){
+    alert("The clicked button has a H1 above, which contains: " + Content);
+}
+</script>
+)}
+
+
+
+{DisplayImage ? (
+    <img src="https://opencollective-production.s3.us-west-1.amazonaws.com/ffe74770-fbbd-11eb-b314-39e7ccf0e7c1.jpeg">
+):(
+    <div>Oh oh! You got no display image set! </div>
+)}
+
+
